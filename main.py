@@ -22,7 +22,7 @@ class Valorant(object):
         soup = bs(source, 'lxml')
         
         main_section_victories_counter = soup.findAll('div', class_="stat align-left expandable")[0].text.split('  ')
-        return f'You have won {main_section_victories_counter[2]} victories'
+        return f'You have won {main_section_victories_counter[2]} match(es)'
     
         # for i in range(10):
         #     main_section_victories_counter = soup.findAll('div', class_="stat align-left expandable")[i].text.split('  ')
@@ -43,9 +43,8 @@ class Valorant(object):
         
 
 #Insert the nickname of the player and your Riot ID to get your stats, such as rank, kills, victories and headshot
-player_1 = Valorant('nick_name', 'riot_id')
+player_1 = Valorant('TXC BOLADONA', '2050')
 print(player_1.get_rank())
 print(player_1.victories())
 print(player_1.kills_counter())
 print(player_1.headshot_counter())
-    
