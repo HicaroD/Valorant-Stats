@@ -3,7 +3,6 @@
 
 import requests 
 from bs4 import BeautifulSoup as bs
-from tkinter import * 
                 
 class Valorant(object):
     def __init__(self, nick_name, riot_id):
