@@ -10,14 +10,9 @@ class Valorant(object):
         self.riot_id = riot_id
         
     def web_page_stats(self):
-        source = requests.get(url = f'https://tracker.gg/valorant/profile/riot/{self.nick_name}%23{self.riot_id}/overview'.replace(' ', '+')).text
-        soup = bs(source, 'lxml')
-        return soup
-    
-    def match_history_page(self):
-        source = requests.get(url= f'https://tracker.gg/valorant/profile/riot/{self.nick_name}%23{self.riot_id}/matches'.replace(' ', '+')).text
-        soup = bs(source, 'lxml')
-        return soup 
+            source = requests.get(url = f'https://tracker.gg/valorant/profile/riot/{self.nick_name}%23{self.riot_id}/overview'.replace(' ', '+')).text
+            soup = bs(source, 'lxml')
+            return soup
 
     def get_rank(self):
         my_page = self.web_page_stats()
@@ -68,7 +63,7 @@ class Valorant(object):
                 weapon_name = weapons_page.findAll('div', class_="weapon__name")[index].text
                 top_weapons_kills = weapons_page.findAll('div', class_='weapon__main-stat')[index].text
                 
-                print(f'\t \t{weapon_name} ---> {top_weapons_kills}')
+                return (f'\t \t{weapon_name} ---> {top_weapons_kills}')
 
 #Insert the nickname of the player and your Riot ID to get your stats, such as rank, kills, victories and headshot
 
@@ -77,11 +72,17 @@ riot_id = input("Type your Riot ID: ")
 print("\n \n")
 player_1 = Valorant(nick_name, riot_id)
 
-print(player_1.get_rank()) #Get your rank information
-print(player_1.victories()) # Do you want to see how many victories you have?
-print(player_1.kills()) # Wanna see how many kill you get?
-print(player_1.headshot()) # What about headshot? 
-print(player_1.deaths()) # How many times you died? 
-print(player_1.assistances()) # Do you help your team? Check it out 
-print(player_1.clutches()) # Are you really strong at this game? Check how many clutches you achieved
-player_1.top_weapons() # See your top weapons based on your kills
+
+try:
+    print(player_1.get_rank()) #Get your rank information
+    print(player_1.victories()) # Do you want to see how many victories you have?
+    print(player_1.kills()) # Wanna see how many kill you get?
+    print(player_1.headshot()) # What about headshot? 
+    print(player_1.deaths()) # How many times you died? 
+    print(player_1.assistances()) # Do you help your team? Check it out 
+    print(player_1.clutches()) # Are you really strong at this game? Check how many clutches you achieved
+    print(player_1.top_weapons()) # See your top weapons based on your kills
+except AttributeError as e:
+    print("Make sure that your account is not private. Otherwise, we can't acess nothing at all.\n")
+    print("Please read the repository to solve this problem: https://github.com/HicaroD/Valorant-Stats\n")
+    print(e)
