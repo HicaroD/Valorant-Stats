@@ -13,6 +13,16 @@ That's just for educational purposes and nothing more!
 * Requests -  a simple, yet elegant HTTP library that allows you to send HTTP/1.1 requests extremely easily. 
 
 
+## Read this first
+To acess your informations through this program, your Riot Account has to be public. How do you know this?
+
+### 1. Go to https://tracker.gg/valorant
+On https://tracker.gg/valorant, Type your nickname and Riot ID.
+
+![](Images/private_acc.png)
+
+If that shows up, your account is private. Now, select that checkbox "I acknowledge signing in makes my profile public to all users" and sign in with your Riot account. After that, everyone can acess your stats about the game. 
+
 ## Instalation of libraries
 
 #### 1. Installing pip
