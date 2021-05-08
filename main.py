@@ -63,7 +63,7 @@ class Valorant(object):
                 weapon_name = weapons_page.findAll('div', class_="weapon__name")[index].text
                 top_weapons_kills = weapons_page.findAll('div', class_='weapon__main-stat')[index].text
                 
-                return (f'\t \t{weapon_name} ---> {top_weapons_kills}')
+                 print(f'\t \t{weapon_name} ---> {top_weapons_kills}')
 
 #Insert the nickname of the player and your Riot ID to get your stats, such as rank, kills, victories and headshot
 
@@ -81,7 +81,7 @@ try:
     print(player_1.deaths()) # How many times you died? 
     print(player_1.assistances()) # Do you help your team? Check it out 
     print(player_1.clutches()) # Are you really strong at this game? Check how many clutches you achieved
-    print(player_1.top_weapons()) # See your top weapons based on your kills
+    player_1.top_weapons() # See your top weapons based on your kills
 except AttributeError as e:
     print("Make sure that your account is not private. Otherwise, we can't acess nothing at all.\n")
     print("Please read the repository to solve this problem: https://github.com/HicaroD/Valorant-Stats\n")
