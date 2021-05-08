@@ -1,4 +1,7 @@
-# Valorant-Stats program
+# Valorant Stats by H1CARO
+
+![](Images/1072679.jpg)
+
 
 ## Goal
 Learn more about Web Scraping with BeautifulSoup and Requests libraries. I'm using both libraries to extract informations of a website called tracker.gg/valorant
@@ -32,3 +35,11 @@ git clone https://github.com/HicaroD/Valorant-Stats.git
 
 First, go to the Valorant-Stats folder using ``` cd Valorant-Stats ``` and after that you can install the packages using ``` pip3 install -r requirements.txt```
 
+#### 4. Execute the program
+
+Make sure that you're in the folder of the project, after that execute the script in the command line using ```python3 main.py```
+
+
+## Example
+
+![Image](Images/example_code.png)
