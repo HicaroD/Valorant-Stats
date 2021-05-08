@@ -18,7 +18,7 @@ class Valorant(object):
         source = requests.get(url= f'https://tracker.gg/valorant/profile/riot/{self.nick_name}%23{self.riot_id}/matches'.replace(' ', '+')).text
         soup = bs(source, 'lxml')
         return soup 
-    
+
     def get_rank(self):
         my_page = self.web_page_stats()
 
@@ -62,16 +62,21 @@ class Valorant(object):
     def top_weapons(self):
         weapons_page = self.web_page_stats()
         
-        print(f'\n{self.nick_name}, your top weapons:\n')
+        print(f'\n{self.nick_name}, your top weapons:')
         
         for index in range(3):
                 weapon_name = weapons_page.findAll('div', class_="weapon__name")[index].text
                 top_weapons_kills = weapons_page.findAll('div', class_='weapon__main-stat')[index].text
                 
-                print(f'{weapon_name} ---> {top_weapons_kills}')
-    
+                print(f'\t \t{weapon_name} ---> {top_weapons_kills}')
+
 #Insert the nickname of the player and your Riot ID to get your stats, such as rank, kills, victories and headshot
-player_1 = Valorant('TXC H1CARO', '6761')
+
+nick_name = input("Type your username: ")
+riot_id = input("Type your Riot ID: ")
+print("\n \n")
+player_1 = Valorant(nick_name, riot_id)
+
 print(player_1.get_rank()) #Get your rank information
 print(player_1.victories()) # Do you want to see how many victories you have?
 print(player_1.kills()) # Wanna see how many kill you get?
