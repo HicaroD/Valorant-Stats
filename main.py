@@ -40,6 +40,9 @@ class Valorant(object):
         return f'{self.nick_name} has {number_kills[2]} headshot(s)'      
     
     def deaths(self):
+        """
+        Returns the amount of the death
+        """
         deaths_page = self.web_page_stats()
         number_deaths = deaths_page.findAll('div', class_="stat align-left expandable")[3].text.split('  ')
         
@@ -69,7 +72,7 @@ class Valorant(object):
 
     def accuracy(self):
         accuracy_content = self.web_page_stats()
-        print(f"{self.nick_name}, your accuracy informations: \n")
+        print(f"{self.nick_name}, your accuracy informations:")
 
         accuracy = accuracy_content.find('table', class_='accuracy__stats').find('tbody').text.split(' ')
         
@@ -77,28 +80,30 @@ class Valorant(object):
         body_accuracy = accuracy[4:8]
         legs_accuracy = accuracy[8:]
 
-        print(f"{head_accuracy[0]} --> {head_accuracy[1]} --> {head_accuracy[2]} {head_accuracy[3]}\n{body_accuracy[0]} --> {body_accuracy[1]} --> {body_accuracy[2]} {body_accuracy[3]}\n{legs_accuracy[0]} --> {legs_accuracy[1]} --> {legs_accuracy[2]} {legs_accuracy[3]}")
+        print(f"\t \t{head_accuracy[0]} --> {head_accuracy[1]} --> {head_accuracy[2]} {head_accuracy[3]}\n\t \t{body_accuracy[0]} --> {body_accuracy[1]} --> {body_accuracy[2]} {body_accuracy[3]}\n\t \t{legs_accuracy[0]} --> {legs_accuracy[1]} --> {legs_accuracy[2]} {legs_accuracy[3]}")
 
 
 #Insert the nickname of the player and your Riot ID to get your stats, such as rank, kills, victories and headshot
 
-nick_name = input("Type your username: ")
-riot_id = input("Type your Riot ID: ")
-print("\n \n")
-player_1 = Valorant(nick_name, riot_id)
+
+if __name__ == '__main__':
+    nick_name = input("Type your username: ")
+    riot_id = input("Type your Riot ID: ")
+    print("\n \n")
+    player_1 = Valorant(nick_name, riot_id)
 
 
-try:
-    print(player_1.get_rank()) #Get your rank information
-    print(player_1.victories()) # Do you want to see how many victories you have?
-    print(player_1.kills()) # Wanna see how many kill you get?
-    print(player_1.headshot()) # What about headshot? 
-    print(player_1.deaths()) # How many times you died? 
-    print(player_1.assistances()) # Do you help your team? Check it out 
-    print(player_1.clutches()) # Are you really strong at this game? Check how many clutches you achieved
-    player_1.top_weapons() # See your top weapons based on your kills
-    player_1.accuracy()
-except AttributeError as e:
-    print("Make sure that your account is not private. Otherwise, we can't acess nothing at all.\n")
-    print("Please read the repository to solve this problem: https://github.com/HicaroD/Valorant-Stats\n")
-    print(e)
+    try:
+        print(player_1.get_rank()) #Get your rank information
+        print(player_1.victories()) # Do you want to see how many victories you have?
+        print(player_1.kills()) # Wanna see how many kill you get?
+        print(player_1.headshot()) # What about headshot? 
+        print(player_1.deaths()) # How many times you died? 
+        print(player_1.assistances()) # Do you help your team? Check it out 
+        print(player_1.clutches()) # Are you really strong at this game? Check how many clutches you achieved
+        player_1.top_weapons() # See your top weapons based on your kills
+        player_1.accuracy()
+    except AttributeError as e:
+        print("Make sure that your account is not private. Otherwise, we can't acess nothing at all.\n")
+        print("Please read the repository to solve this problem: https://github.com/HicaroD/Valorant-Stats\n")
+        print(e)
