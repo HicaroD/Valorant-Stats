@@ -10,7 +10,8 @@ class Valorant(object):
         self.riot_id = riot_id
         
     def web_page_stats(self):
-            source = requests.get(url = f'https://tracker.gg/valorant/profile/riot/{self.nick_name}%23{self.riot_id}/overview'.replace(' ', '+')).text
+            url = f'https://tracker.gg/valorant/profile/riot/{self.nick_name}%23{self.riot_id}/overview'.replace(' ', '+')
+            source = requests.get(url = url).text
             soup = bs(source, 'lxml')
             return soup
 
@@ -63,7 +64,21 @@ class Valorant(object):
                 weapon_name = weapons_page.findAll('div', class_="weapon__name")[index].text
                 top_weapons_kills = weapons_page.findAll('div', class_='weapon__main-stat')[index].text
                 
-                return (f'\t \t{weapon_name} ---> {top_weapons_kills}')
+                print(f'\t \t{weapon_name} ---> {top_weapons_kills}')
+        print("\n")
+
+    def accuracy(self):
+        accuracy_content = self.web_page_stats()
+        print(f"{self.nick_name}, your accuracy informations: \n")
+
+        accuracy = accuracy_content.find('table', class_='accuracy__stats').find('tbody').text.split(' ')
+        
+        head_accuracy = accuracy[:4]
+        body_accuracy = accuracy[4:8]
+        legs_accuracy = accuracy[8:]
+
+        print(f"{head_accuracy[0]} --> {head_accuracy[1]} --> {head_accuracy[2]} {head_accuracy[3]}\n{body_accuracy[0]} --> {body_accuracy[1]} --> {body_accuracy[2]} {body_accuracy[3]}\n{legs_accuracy[0]} --> {legs_accuracy[1]} --> {legs_accuracy[2]} {legs_accuracy[3]}")
+
 
 #Insert the nickname of the player and your Riot ID to get your stats, such as rank, kills, victories and headshot
 
@@ -81,7 +96,8 @@ try:
     print(player_1.deaths()) # How many times you died? 
     print(player_1.assistances()) # Do you help your team? Check it out 
     print(player_1.clutches()) # Are you really strong at this game? Check how many clutches you achieved
-    print(player_1.top_weapons()) # See your top weapons based on your kills
+    player_1.top_weapons() # See your top weapons based on your kills
+    player_1.accuracy()
 except AttributeError as e:
     print("Make sure that your account is not private. Otherwise, we can't acess nothing at all.\n")
     print("Please read the repository to solve this problem: https://github.com/HicaroD/Valorant-Stats\n")
