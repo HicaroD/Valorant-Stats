@@ -66,6 +66,10 @@ class Valorant(object):
                 print(f'\t \t{weapon_name} ---> {top_weapons_kills}')
 
     def accuracy(self):
+
+        """
+        Dont' return nothing, just prints out the accuracy
+        """
         accuracy_content = self.web_page_stats()
         print(f"{self.nick_name}, your accuracy informations:")
 
