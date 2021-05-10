@@ -3,8 +3,6 @@
 
 import requests 
 from bs4 import BeautifulSoup as bs
-from threading import Thread 
-
                 
 class Valorant(object):
     def __init__(self, nick_name, riot_id):
@@ -12,8 +10,7 @@ class Valorant(object):
         self.riot_id = riot_id
         
     def web_page_stats(self):
-            url = f'https://tracker.gg/valorant/profile/riot/{self.nick_name}%23{self.riot_id}/overview'.replace(' ', '+')
-            source = requests.get(url = url).text
+            source = requests.get(url = f'https://tracker.gg/valorant/profile/riot/{self.nick_name}%23{self.riot_id}/overview'.replace(' ', '+')).text
             soup = bs(source, 'lxml')
             return soup
 
@@ -42,9 +39,6 @@ class Valorant(object):
         return f'{self.nick_name} has {number_kills[2]} headshot(s)'      
     
     def deaths(self):
-        """
-        Returns the amount of the death
-        """
         deaths_page = self.web_page_stats()
         number_deaths = deaths_page.findAll('div', class_="stat align-left expandable")[3].text.split('  ')
         
@@ -70,7 +64,6 @@ class Valorant(object):
                 top_weapons_kills = weapons_page.findAll('div', class_='weapon__main-stat')[index].text
                 
                 print(f'\t \t{weapon_name} ---> {top_weapons_kills}')
-        print("\n")
 
     def accuracy(self):
         accuracy_content = self.web_page_stats()
@@ -82,17 +75,16 @@ class Valorant(object):
         body_accuracy = accuracy[4:8]
         legs_accuracy = accuracy[8:]
 
-        print(f"\t \t{head_accuracy[0]} --> {head_accuracy[1]} --> {head_accuracy[2]} {head_accuracy[3]}\n\t \t{body_accuracy[0]} --> {body_accuracy[1]} --> {body_accuracy[2]} {body_accuracy[3]}\n\t \t{legs_accuracy[0]} --> {legs_accuracy[1]} --> {legs_accuracy[2]} {legs_accuracy[3]}")
+        print(f"\t \t{head_accuracy[0]} --> {head_accuracy[1]} --> {head_accuracy[2]} {head_accuracy[3]}\n\t \t{body_accuracy[0]} --> {body_accuracy[1]} --> {body_accuracy[2]} {body_accuracy[3]}\n\t \t{legs_accuracy[0]} --> {legs_accuracy[1]} --> {legs_accuracy[2]} {legs_accuracy[3]}\n")
         
 
 #Insert the nickname of the player and your Riot ID to get your stats, such as rank, kills, victories and headshot
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     nick_name = input("Type your username: ")
-    riot_id = input("Type your Riot ID: ")    
+    riot_id = input("Type your Riot ID: ")
     print("\n \n")
-    
     player_1 = Valorant(nick_name, riot_id)
 
 
@@ -107,4 +99,6 @@ if __name__ == '__main__':
         player_1.top_weapons() # See your top weapons based on your kills
         player_1.accuracy()
     except AttributeError as e:
-        print("Make sure that your account is not private. Otherwise, we can't acess nothing at all. Also make sure that you typed the nickname and Riot ID correctly\n\nPlease read the repository to solve/report possible problems: https://github.com/HicaroD/Valorant-Stats\n")
+        print("Make sure that your account is not private. Otherwise, we can't acess nothing at all.\n")
+        print("Please read the repository to solve this problem: https://github.com/HicaroD/Valorant-Stats\n")
+        print(e)
