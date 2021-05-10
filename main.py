@@ -3,6 +3,8 @@
 
 import requests 
 from bs4 import BeautifulSoup as bs
+from threading import Thread 
+
                 
 class Valorant(object):
     def __init__(self, nick_name, riot_id):
@@ -81,15 +83,16 @@ class Valorant(object):
         legs_accuracy = accuracy[8:]
 
         print(f"\t \t{head_accuracy[0]} --> {head_accuracy[1]} --> {head_accuracy[2]} {head_accuracy[3]}\n\t \t{body_accuracy[0]} --> {body_accuracy[1]} --> {body_accuracy[2]} {body_accuracy[3]}\n\t \t{legs_accuracy[0]} --> {legs_accuracy[1]} --> {legs_accuracy[2]} {legs_accuracy[3]}")
-
+        
 
 #Insert the nickname of the player and your Riot ID to get your stats, such as rank, kills, victories and headshot
 
 
 if __name__ == '__main__':
     nick_name = input("Type your username: ")
-    riot_id = input("Type your Riot ID: ")
+    riot_id = input("Type your Riot ID: ")    
     print("\n \n")
+    
     player_1 = Valorant(nick_name, riot_id)
 
 
@@ -104,6 +107,4 @@ if __name__ == '__main__':
         player_1.top_weapons() # See your top weapons based on your kills
         player_1.accuracy()
     except AttributeError as e:
-        print("Make sure that your account is not private. Otherwise, we can't acess nothing at all.\n")
-        print("Please read the repository to solve this problem: https://github.com/HicaroD/Valorant-Stats\n")
-        print(e)
+        print("Make sure that your account is not private. Otherwise, we can't acess nothing at all. Also make sure that you typed the nickname and Riot ID correctly\n\nPlease read the repository to solve/report possible problems: https://github.com/HicaroD/Valorant-Stats\n")
