@@ -21,7 +21,8 @@ On https://tracker.gg/valorant, Type your nickname and Riot ID.
 
 ![](Images/private_acc.png)
 
-If that shows up, your account is private. Now, select that checkbox "I acknowledge signing in makes my profile public to all users" and sign in with your Riot account. After that, everyone can acess your stats about the game. 
+If that shows up, your account is private. Now, select that checkbox "I acknowledge signing in makes my profile public to all users" and sign in with your Riot account. After that, everyone can acess your stats about the game. Don't worry, this won't expose your privacy, it will just set your account to be public in relation to your game information like kill count, headshots, rank and so on.
+
 
 ## Instalation of libraries
 
@@ -45,11 +46,11 @@ git clone https://github.com/HicaroD/Valorant-Stats.git
 
 First, go to the Valorant-Stats folder using ``` cd Valorant-Stats ``` and after that you can install the packages using ``` pip3 install -r requirements.txt```
 
+NOTE: pip3 is the newest version of Pip at the momento, make sure you updated it.  
+
 #### 4. Execute the program
 
 Make sure that you're in the folder of the project, after that execute the script in the command line using ```python3 main.py```
 
 
 ## Example
-
-![Image](Images/example_code.png)
