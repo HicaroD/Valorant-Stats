@@ -8,20 +8,15 @@ def player_info(nickname, tag):
     headshot and return it as a list of values  
     """
     soup = get_webpage(nickname, tag)
-
     divs = soup.find_all("span", {"class":"value"})
+    values = [divs[i].text for i in range(len(divs))]
     
-    values = []
-    
-    for i in range(len(divs)):
-        values.append(divs[i].text)
-        
     return values
 
 def get_webpage(nickname, tag):
     page = requests.get(f'https://tracker.gg/valorant/profile/riot/{nickname}%23{tag}/overview').text
-
     soup = bs4(page, 'lxml')    
+
     return soup
 
 
@@ -89,3 +84,4 @@ if __name__ == "__main__":
     # nickname, tag = input().split("-")
     player = Valorant("TXC H1CARO", "6761")
     print(player.rating())
+    
