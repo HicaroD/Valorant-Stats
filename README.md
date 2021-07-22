@@ -54,3 +54,9 @@ Make sure that you're in the folder of the project, after that execute the scrip
 
 
 ## Example
+
+### Import the class
+``` {.py}
+import Valorant 
+
+```
