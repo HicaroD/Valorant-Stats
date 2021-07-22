@@ -2,52 +2,39 @@ from bs4 import BeautifulSoup as bs4
 import requests
 from requests.api import head, request 
 
-class Valorant:
-    """
-    Insert the tag without '#', just the characteres or numbers. 
-    """
-
+class ValorantPlayer:
     def __init__(self, nickname, tag):
         self.nickname = nickname
         self.tag = tag
         self.page = self._get_webpage()
         self.player_info = self._player_info()
     
-    def kills(self):
-        kills = self._player_info()[8]
-        return kills
+    def kills(self): 
+        return self.player_info[8]
     
     def deaths(self):
-        deaths = self._player_info()[10]
-        return deaths   
+        return self.player_info[10]   
 
     def assistances(self):
-        assistances = self._player_info()[11]
-        return assistances
+        return self.player_info[11]
     
     def kills_per_round(self):
-        kills_per_round = self._player_info()[-4]
-        return kills_per_round
+        return self.player_info[-4]
     
     def damage_per_round(self):
-        damage_per_round = self._player_info()[3]
-        return damage_per_round
+        return self.player_info[3]
 
     def headshot_percentage(self):
-        headshot_percentage = self._player_info()[5]
-        return headshot_percentage
+        return self.player_info[5]
     
     def clutchs(self):
-        clutchs = self._player_info()[-3]
-        return clutchs
+        return self.player_info[-3]
 
     def headshot_amount(self):
-        headshot_amount = self._player_info()[9]
-        return headshot_amount
+        return self.player_info[9]
 
     def rating(self):
-        rating = self.page.find("span", {"class": "valorant-highlighted-stat__value"}).text
-        return rating
+        return self.page.find("span", {"class": "valorant-highlighted-stat__value"}).text
     
     def top_weapon(self):
         """
@@ -57,7 +44,7 @@ class Valorant:
         top_weapon = self.page.find("div", {"class": "weapon"}).text.split(" ")
         
         top_weapon_informations = {"Weapon": top_weapon[1], "Headshots": top_weapon[-5],
-        "Bodyshot": top_weapon[-4], "Leg_shot":top_weapon[-3], "Kills": top_weapon[-1]}
+                                   "Bodyshot": top_weapon[-4], "Leg_shot":top_weapon[-3], "Kills": top_weapon[-1]}
 
         return top_weapon_informations
     
@@ -75,12 +62,12 @@ class Valorant:
         """
 
         divs = self.page.find_all("span", {"class":"value"})
-        values = [divs[i].text for i in range(len(divs))]
+        values = [div.text for div in divs]
         
         return values
 
 if __name__ == "__main__":
-    player = Valorant("TXC H1CARO", "6761")
+    player = ValorantPlayer("TXC H1CARO", "6761")
     print(player.rating())
     print(player.kills())
     print(player.assistances())
