@@ -4,7 +4,7 @@
 
 
 ## Goal
-Learn more about Web Scraping with BeautifulSoup and Requests libraries. I'm using both libraries to extract informations of a website called tracker.gg/valorant
+Learn more about Web Scraping with BeautifulSoup and Requests libraries. I'm using both libraries to extract informations from a website called tracker.gg/valorant
 
 That's just for educational purposes and nothing more! 
 
@@ -48,15 +48,29 @@ First, go to the Valorant-Stats folder using ``` cd Valorant-Stats ``` and after
 
 NOTE: pip3 is the newest version of Pip at the momento, make sure you updated it.  
 
-#### 4. Execute the program
+## Examples
+``` python3
 
-Make sure that you're in the folder of the project, after that execute the script in the command line using ```python3 main.py```
+from ValorantExtractor import Valorant
 
 
-## Example
+player = Valorant("TXC H1CARO", "6761")
 
-### Import the class
-``` {.py}
-import Valorant 
+print(player.rating())
 
+print(player.kills())
+
+print(player.assistances())
+
+print(player.kills_per_round())
+
+print(player.damage_per_round())
+
+print(player.deaths())
+
+print(player.top_weapon()) # Dictionary 
+
+print(player.headshot_amount())
+
+print(player.headshot_percentage())
 ```
