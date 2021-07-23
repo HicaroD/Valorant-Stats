@@ -8,6 +8,7 @@ class ValorantPlayer:
         self.tag = tag
         self.page = self._get_webpage()
         self.player_info = self._player_info()
+        self.top_weapon_page = self._top_weapon_info()
     
     def kills(self): 
         return self.player_info[8]
@@ -35,25 +36,35 @@ class ValorantPlayer:
 
     def rating(self):
         return self.page.find("span", {"class": "valorant-highlighted-stat__value"}).text
-    
+
     def top_weapon(self):
+        return self.top_weapon_page
+    
+    def _top_weapon_info(self):
         """
         Returns as a dictionary. The list is gonna store the name of the weapon, accuracy (headshot, bodyshot and leg shots) and the number of kills
         with the weapon
-        """
-        top_weapon = self.page.find("div", {"class": "weapon"}).text.split(" ")
+        """ 
+        try: 
+            top_weapon = self.page.find("div", {"class": "weapon"}).text.split(" ")
         
-        top_weapon_informations = {"Weapon": top_weapon[1], "Headshots": top_weapon[-5],
-                                   "Bodyshot": top_weapon[-4], "Leg_shot":top_weapon[-3], "Kills": top_weapon[-1]}
+            top_weapon_informations = {"Weapon": top_weapon[1], "Headshots": top_weapon[-5],"Bodyshot": top_weapon[-4], 
+                                       "Leg_shot":top_weapon[-3], "Kills": top_weapon[-1]}
 
-        return top_weapon_informations
-    
-    
-    def _get_webpage(self): 
-        page = requests.get(f'https://tracker.gg/valorant/profile/riot/{self.nickname}%23{self.tag}/overview').text
-        soup = bs4(page, 'lxml')    
+            return top_weapon_informations
 
-        return soup
+        except Exception as e: 
+            print(f"Error: {e}. Make sure if it's the correct nickname and tag. Otherwise, it might be about your account visibility, check if it's public. Read this: https://github.com/HicaroD/Valorant-Stats\n")
+
+    def _get_webpage(self):
+        try: 
+            page = requests.get(f'https://tracker.gg/valorant/profile/riot/{self.nickname}%23{self.tag}/overview').text
+            soup = bs4(page, 'lxml')    
+
+            return soup
+
+        except Exception as e: 
+            print(f"Error: {e}. Make sure you had set your account to public. Read this: https://github.com/HicaroD/Valorant-Stats\n")
 
     def _player_info(self):
         """
@@ -67,16 +78,20 @@ class ValorantPlayer:
         return values
 
 if __name__ == "__main__":
-    player = ValorantPlayer("TXC H1CARO", "6761")
-    print(player.rating())
-    print(player.kills())
-    print(player.assistances())
-    print(player.kills_per_round())
-    print(player.damage_per_round())
-    print(player.deaths())
-    print(player.top_weapon())
-    print(player.headshot_amount())
-    print(player.headshot_percentage())
+    print("Insert your nickname and tag separated by the '-' symbol and you don't need to use the hash '#' to insert the tag")
+    
+    nickname, tag = input().split('-')
+    player = ValorantPlayer(nickname, tag)
+
+    print("Rating: " + player.rating())
+    print("Amount of kills: " + player.kills())
+    print("Amount of assistances: " + player.assistances())
+    print("Kills per round: " + player.kills_per_round())
+    print("Damage per round: " + player.damage_per_round())
+    print("Deaths: " + player.deaths())
+    print("Top weapon: " + str(player.top_weapon()))
+    print("Headshots amount: " + player.headshot_amount())
+    print("Headshot percentage: " + player.headshot_percentage())
 
 
 
