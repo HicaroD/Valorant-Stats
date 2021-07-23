@@ -53,24 +53,16 @@ NOTE: pip3 is the newest version of Pip at the momento, make sure you updated it
 
 from ValorantExtractor import Valorant
 
+nickname, tag = input().split('-')
+player = ValorantPlayer(nickname, tag)
 
-player = Valorant("TXC H1CARO", "6761")
-
-print(player.rating())
-
-print(player.kills())
-
-print(player.assistances())
-
-print(player.kills_per_round())
-
-print(player.damage_per_round())
-
-print(player.deaths())
-
-print(player.top_weapon()) # Dictionary 
-
-print(player.headshot_amount())
-
-print(player.headshot_percentage())
+print("Rating: " + player.rating())
+print("Amount of kills: " + player.kills())
+print("Amount of assistances: " + player.assistances())
+print("Kills per round: " + player.kills_per_round())
+print("Damage per round: " + player.damage_per_round())
+print("Deaths: " + player.deaths())
+print("Top weapon: " + str(player.top_weapon()))
+print("Headshots amount: " + player.headshot_amount())
+print("Headshot percentage: " + player.headshot_percentage())
 ```
