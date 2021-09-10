@@ -1,6 +1,6 @@
 # Valorant Stats by H1CARO
 
-![](Images/1072679.jpg)
+![](docs/images/1072679.jpg)
 
 
 ## Goal
@@ -19,7 +19,7 @@ To acess your informations through this program, your Riot Account has to be pub
 ### 1. Go to https://tracker.gg/valorant
 On https://tracker.gg/valorant, Type your nickname and Riot ID.
 
-![](Images/private_acc.png)
+![](docs/images/private_acc.png)
 
 If that shows up, your account is private. Now, select that checkbox "I acknowledge signing in makes my profile public to all users" and sign in with your Riot account. After that, everyone can acess your stats about the game. Don't worry, this won't expose your privacy, it will just set your account to be public in relation to your game information like kill count, headshots, rank and so on.
 
