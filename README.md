@@ -51,7 +51,7 @@ NOTE: pip3 is the newest version of Pip at the momento, make sure you updated it
 ## Examples
 ``` python3
 
-from ValorantExtractor import Valorant
+from valorant import ValorantPlayer
 
 nickname, tag = input().split('-')
 player = ValorantPlayer(nickname, tag)
