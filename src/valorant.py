@@ -8,37 +8,47 @@ class ValorantPlayer:
         self.tag = tag
         self.player_info = PlayerInfoExtractor(self.nickname, self.tag)
 
-    def individual_perfomance(self, index):
+    def _individual_performance(self, index):
         return self.player_info.get_individual_performance()[index]
 
     def kills(self):
-        return self.individual_perfomance(8)
+        """Returns an string containing the amount of kills you have"""
+        return self._individual_performance(8)
 
     def deaths(self):
-        return self.individual_perfomance(10)
+        """Returns a integer string containing the amount of times you died"""
+        return self._individual_performance(10)
 
     def assistances(self):
-        return self.individual_perfomance(11)
+        """Returns a string containing the amount of assistances you have"""
+        return self._individual_performance(11)
 
     def kills_per_round(self):
-        return self.individual_perfomance(-4)
+        """Returns a string containing the amount of kills per round (KPR) you have"""
+        return self._individual_performance(-4)
 
     def damage_per_round(self):
-        return self.individual_perfomance(3)
+        """Returns a string containing the amount of damage per round (DPR) you have"""
+        return self._individual_performance(3)
 
     def headshot_percentage(self):
-        return self.individual_perfomance(5)
+        """Returns a string containing the amount of damage per round (DPR) you have"""
+        return self._individual_performance(5)
 
     def clutchs(self):
-        return self.individual_perfomance(-3)
+        """Returns a string containing the amount of clutchs you won"""
+        return self._individual_performance(-3)
 
     def headshot_amount(self):
-        return self.individual_perfomance(9)
+        """Returns a string containing the amount of kills (with headshots)"""
+        return self._individual_performance(9)
 
     def rating(self):
+        """Returns a string containing your rating (like Bronze, Silver or Radiant)"""
         return self.player_info.get_player_rating()
 
     def top_weapon(self):
+        """Returns a dictionary containing informations about your top weapon.\n You can access the info with these keys below: Weapons, Headshots, Bodyshot, Leg_shot, Kills"""
         return self.player_info.get_top_weapons()
 
 if __name__ == "__main__":
